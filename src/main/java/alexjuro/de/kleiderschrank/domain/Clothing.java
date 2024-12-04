@@ -22,8 +22,10 @@ public class Clothing {
     @Column(length = 30)
     private String brand;
 
-    @Column(length = 255)
     private String description;
+
+    @Lob
+    private String imageBase64;
 
     @Column(nullable = false)
     private boolean inLaundry;

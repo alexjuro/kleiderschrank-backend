@@ -41,7 +41,7 @@ public class UserService {
                     .name(foundUser.getName())
                     .email(foundUser.getEmail())
                     .createdAt(foundUser.getCreatedAt())
-                    .closet(new ClosetDTO())
+                    .closet(ClosetDTO.builder().build())
                     .build();
         }
 

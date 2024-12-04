@@ -11,6 +11,7 @@ public class ClothingDTO {
     private Integer id;
     private String brand;
     private String description;
+    private String imageBase64;
     private boolean inLaundry;
     private Category category;
     private Color color;
