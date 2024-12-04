@@ -3,6 +3,7 @@ package alexjuro.de.kleiderschrank.domain;
 import jakarta.persistence.*;
 import lombok.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="users")
@@ -27,4 +28,11 @@ public class User {
 
     @Column(nullable = false)
     private Date createdAt;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "closet_id", referencedColumnName = "id")
+    private Closet closet;
+
+//    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Outfit> outfits;
 }

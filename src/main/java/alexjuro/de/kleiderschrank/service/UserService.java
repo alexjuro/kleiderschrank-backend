@@ -1,6 +1,8 @@
 package alexjuro.de.kleiderschrank.service;
 
+import alexjuro.de.kleiderschrank.domain.Closet;
 import alexjuro.de.kleiderschrank.domain.User;
+import alexjuro.de.kleiderschrank.dto.ClosetDTO;
 import alexjuro.de.kleiderschrank.dto.UserDTO;
 import alexjuro.de.kleiderschrank.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +22,12 @@ public class UserService {
                 .name(userDTO.getName())
                 .email(userDTO.getEmail())
                 .createdAt(userDTO.getCreatedAt())
+                .closet(new Closet())
                 .build();
         userRepository.save(user);
     }
 
+    //TODO: search the user by the send cookie
     public UserDTO getUser(String uid){
         Optional<User> user = userRepository.findByUid(uid);
         if (user.isEmpty()) {
@@ -37,6 +41,7 @@ public class UserService {
                     .name(foundUser.getName())
                     .email(foundUser.getEmail())
                     .createdAt(foundUser.getCreatedAt())
+                    .closet(new ClosetDTO())
                     .build();
         }
 
