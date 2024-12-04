@@ -15,5 +15,5 @@ import java.util.List;
 public class ClosetDTO {
     private Integer id;
     private User user;
-//    private List<ClothingDTO> clothings;
+    private List<ClothingDTO> clothings;
 }

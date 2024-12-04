@@ -22,6 +22,6 @@ public class Closet {
     @OneToOne(mappedBy = "closet")
     private User user;
 
-//    @OneToMany(mappedBy = "closet", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<Clothing> clothings;
+    @OneToMany(mappedBy = "closet", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Clothing> clothings;
 }
