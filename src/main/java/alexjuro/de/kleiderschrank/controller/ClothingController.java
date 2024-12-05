@@ -1,15 +1,15 @@
 package alexjuro.de.kleiderschrank.controller;
 
 import alexjuro.de.kleiderschrank.dto.ClothingDTO;
+import alexjuro.de.kleiderschrank.dto.ClothingInLaundryDTO;
 import alexjuro.de.kleiderschrank.service.ClothingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/clothing")
@@ -30,7 +30,54 @@ public class ClothingController {
         return new ResponseEntity<>(clothingDTO, HttpStatus.CREATED);
     }
 
-    // patch picture
-    // patch information
-    // delete clothing
+    @GetMapping()
+    public ResponseEntity<List<ClothingDTO>> getAllClothings(@RequestParam Integer closetId) throws Exception {
+        List<ClothingDTO> clothingDTOs = clothingService.getAllClothings(closetId);
+        return new ResponseEntity<>(clothingDTOs, HttpStatus.OK);
+    }
+
+    @PatchMapping(
+            consumes = {
+                    MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE},
+            produces = {
+                    MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE
+            })
+    public ResponseEntity<ClothingDTO> updateClothing(@RequestBody ClothingDTO clothingDTO) throws Exception {
+        try{
+            clothingService.updateClothing(clothingDTO);
+            return new ResponseEntity<>(clothingDTO, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(clothingDTO, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @PatchMapping(
+            value = "/inLaundry",
+            consumes = {
+                    MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE},
+            produces = {
+                    MediaType.APPLICATION_JSON_VALUE,
+                    MediaType.APPLICATION_XML_VALUE
+            })
+    public ResponseEntity<Boolean> updateLaundryStatus(@RequestBody ClothingInLaundryDTO clothingInLaundryDTO) throws Exception {
+        try {
+            clothingService.updateLaundryStatus(clothingInLaundryDTO);
+            return new ResponseEntity<>(true, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(false, HttpStatus.BAD_REQUEST);
+        }
+    }
+
+    @DeleteMapping()
+    public ResponseEntity<Integer> deleteClothing(@RequestParam Integer id) throws Exception {
+        try{
+            clothingService.deleteClothing(id);
+            return new ResponseEntity<>(id, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 }

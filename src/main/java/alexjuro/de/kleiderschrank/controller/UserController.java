@@ -31,14 +31,6 @@ public class UserController {
         return new ResponseEntity<>(userDTO, HttpStatus.CREATED);
     }
 
-//    @GetMapping(
-//            consumes = {
-//                    MediaType.APPLICATION_JSON_VALUE,
-//                    MediaType.APPLICATION_XML_VALUE},
-//            produces = {
-//                    MediaType.APPLICATION_JSON_VALUE,
-//                    MediaType.APPLICATION_XML_VALUE
-//            })
     @GetMapping()
     public ResponseEntity<UserDTO> getUser(@RequestParam String uid) throws Exception{
         UserDTO userDTO = userService.getUser(uid);
