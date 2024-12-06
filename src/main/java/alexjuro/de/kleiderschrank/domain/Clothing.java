@@ -46,6 +46,6 @@ public class Clothing {
     @JoinColumn(name = "closet_id")
     private Closet closet;
 
-//    @ManyToMany(mappedBy = "clothings")
-//    private List<Outfit> outfits;
+    @ManyToMany(mappedBy = "clothings")
+    private List<Outfit> outfits;
 }

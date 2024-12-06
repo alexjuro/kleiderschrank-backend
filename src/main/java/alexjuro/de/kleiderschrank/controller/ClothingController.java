@@ -25,13 +25,13 @@ public class ClothingController {
                     MediaType.APPLICATION_JSON_VALUE,
                     MediaType.APPLICATION_XML_VALUE
             })
-    public ResponseEntity<ClothingDTO> createClothing(@RequestBody ClothingDTO clothingDTO) throws Exception {
+    public ResponseEntity<ClothingDTO> createClothing(@RequestBody ClothingDTO clothingDTO) {
         clothingService.saveClothing(clothingDTO);
         return new ResponseEntity<>(clothingDTO, HttpStatus.CREATED);
     }
 
     @GetMapping()
-    public ResponseEntity<List<ClothingDTO>> getAllClothings(@RequestParam Integer closetId) throws Exception {
+    public ResponseEntity<List<ClothingDTO>> getAllClothings(@RequestParam Integer closetId) {
         List<ClothingDTO> clothingDTOs = clothingService.getAllClothings(closetId);
         return new ResponseEntity<>(clothingDTOs, HttpStatus.OK);
     }
@@ -44,7 +44,7 @@ public class ClothingController {
                     MediaType.APPLICATION_JSON_VALUE,
                     MediaType.APPLICATION_XML_VALUE
             })
-    public ResponseEntity<ClothingDTO> updateClothing(@RequestBody ClothingDTO clothingDTO) throws Exception {
+    public ResponseEntity<ClothingDTO> updateClothing(@RequestBody ClothingDTO clothingDTO) {
         try{
             clothingService.updateClothing(clothingDTO);
             return new ResponseEntity<>(clothingDTO, HttpStatus.OK);
@@ -62,7 +62,7 @@ public class ClothingController {
                     MediaType.APPLICATION_JSON_VALUE,
                     MediaType.APPLICATION_XML_VALUE
             })
-    public ResponseEntity<Boolean> updateLaundryStatus(@RequestBody ClothingInLaundryDTO clothingInLaundryDTO) throws Exception {
+    public ResponseEntity<Boolean> updateLaundryStatus(@RequestBody ClothingInLaundryDTO clothingInLaundryDTO) {
         try {
             clothingService.updateLaundryStatus(clothingInLaundryDTO);
             return new ResponseEntity<>(true, HttpStatus.OK);
@@ -72,7 +72,7 @@ public class ClothingController {
     }
 
     @DeleteMapping()
-    public ResponseEntity<Integer> deleteClothing(@RequestParam Integer id) throws Exception {
+    public ResponseEntity<Integer> deleteClothing(@RequestParam Integer id) {
         try{
             clothingService.deleteClothing(id);
             return new ResponseEntity<>(id, HttpStatus.OK);

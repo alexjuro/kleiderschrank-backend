@@ -16,6 +16,6 @@ public class ClothingDTO {
     private Category category;
     private Color color;
     private Type type;
-    private Closet closet;
-    private List<OutfitDTO> outfits;
+    private ClosetDTO closetDTO;
+    private List<OutfitDTO> outfitDTOs;
 }
