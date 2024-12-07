@@ -40,13 +40,13 @@ public class OutfitController {
     public ResponseEntity<List<OutfitWithLaundryDTO>> getOutfits(@RequestBody OufitRequestDTO outfitRequestDTO) {
         try{
             if(outfitRequestDTO.getInLaundry() == null){
-                List<OutfitWithLaundryDTO> res = outfitService.getOutfitsInLaundry(outfitRequestDTO.getClosetId(), null);
+                List<OutfitWithLaundryDTO> res = outfitService.getOutfitsInLaundry(null);
                 return new ResponseEntity<>(res, HttpStatus.OK);
             } else if (outfitRequestDTO.getInLaundry()) {
-                List<OutfitWithLaundryDTO> res = outfitService.getOutfitsInLaundry(outfitRequestDTO.getClosetId(), Boolean.TRUE);
+                List<OutfitWithLaundryDTO> res = outfitService.getOutfitsInLaundry(Boolean.TRUE);
                 return new ResponseEntity<>(res, HttpStatus.OK);
             } else {
-                List<OutfitWithLaundryDTO> res = outfitService.getOutfitsInLaundry(outfitRequestDTO.getClosetId(), Boolean.FALSE);
+                List<OutfitWithLaundryDTO> res = outfitService.getOutfitsInLaundry(Boolean.FALSE);
                 return new ResponseEntity<>(res, HttpStatus.OK);
             }
         } catch(Exception e) {

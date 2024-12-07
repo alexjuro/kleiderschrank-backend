@@ -28,27 +28,6 @@ public class ClothingService {
     @Autowired
     ClosetRepository closetRepository;
 
-
-
-
-
-//    log.info("");
-//    Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//    if (authentication != null && authentication.isAuthenticated()) {
-//        UserDTO u = (UserDTO) authentication.getPrincipal();
-//
-//        return ;
-//    } else {
-//        log.info("user is not authenticated");
-//        throw new NotAuthenticatedException("The user is not authenticated");
-//    }
-
-
-
-
-
-
-
     public void saveClothing(ClothingDTO clothingDTO) throws Exception {
         log.info("saving Clothing");
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
