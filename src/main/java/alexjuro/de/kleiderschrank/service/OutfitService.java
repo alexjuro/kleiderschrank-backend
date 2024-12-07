@@ -63,7 +63,7 @@ public class OutfitService {
                     .builder()
                     .id(outfit.getId())
                     .inLaundry(inLaundrysTrue.get() == outfit.getClothings().size())
-                    .clothings(outfit.getClothings())
+//                    .clothings(outfit.getClothings())
                     .build());
         });
         if(inLaundry == null){
@@ -99,7 +99,7 @@ public class OutfitService {
                     .builder()
                     .id(outfitId)
                     .closet(outfit.getCloset())
-                    .clothings(outfit.getClothings())
+//                    .clothings(outfit.getClothings())
                     .inLaundry(outfit.getClothings().size() == count.get())
                     .build();
         } else {

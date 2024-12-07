@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 
 @RestController
-@RequestMapping("/account")
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
     UserService userService;
 
-    @PostMapping("/create")
+    @PostMapping()
     public ResponseEntity<UserDTO> createUser() throws Exception{
         try{
             UserDTO u = userService.saveUser();

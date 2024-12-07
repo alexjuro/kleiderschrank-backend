@@ -26,14 +26,24 @@ public class ClothingController {
                     MediaType.APPLICATION_XML_VALUE
             })
     public ResponseEntity<ClothingDTO> createClothing(@RequestBody ClothingDTO clothingDTO) {
-        clothingService.saveClothing(clothingDTO);
-        return new ResponseEntity<>(clothingDTO, HttpStatus.CREATED);
+        try {
+            clothingService.saveClothing(clothingDTO);
+            return new ResponseEntity<>(clothingDTO, HttpStatus.CREATED);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @GetMapping()
-    public ResponseEntity<List<ClothingDTO>> getAllClothings(@RequestParam Integer closetId) {
-        List<ClothingDTO> clothingDTOs = clothingService.getAllClothings(closetId);
-        return new ResponseEntity<>(clothingDTOs, HttpStatus.OK);
+    public ResponseEntity<List<ClothingDTO>> getAllClothings() {
+        try {
+            List<ClothingDTO> clothingDTOs = clothingService.getAllClothings();
+            return new ResponseEntity<>(clothingDTOs, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @PatchMapping(

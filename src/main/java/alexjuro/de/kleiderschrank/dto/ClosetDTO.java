@@ -12,6 +12,6 @@ import java.util.List;
 @Builder
 public class ClosetDTO {
     private Integer id;
-    private User user;
+    private UserDTO userDTO;
     private List<ClothingDTO> clothings;
 }

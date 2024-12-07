@@ -36,12 +36,20 @@ public class FirebaseTokenFilter extends OncePerRequestFilter {
                     tokenCache.put(idToken, decodedToken);
                 }
 
+                //TODO: auch cachen, weil sonst unnötig
                 UserDTO user = userService.getUser(decodedToken.getUid());
+                if (user == null) { // für den ersten Aufruf des users
+                    user = UserDTO
+                            .builder()
+                            .uid(decodedToken.getUid())
+                            .name(decodedToken.getName())
+                            .email(decodedToken.getEmail())
+                            .build();
+                }
 
                 // Userdetails für Spring Security
                 FirebaseAuthenticationToken authentication =
                         new FirebaseAuthenticationToken(user, null, null);
-
                 authentication.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 SecurityContextHolder.getContext().setAuthentication(authentication);
             } catch (Exception e) {

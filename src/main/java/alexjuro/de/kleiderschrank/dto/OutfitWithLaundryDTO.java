@@ -12,6 +12,6 @@ import java.util.List;
 public class OutfitWithLaundryDTO {
     private Integer id;
     private Closet closet;
-    private List<Clothing> clothings;
+    private List<ClothingDTO> clothingDTOList;
     private Boolean inLaundry;
 }
