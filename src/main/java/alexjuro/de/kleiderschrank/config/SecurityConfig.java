@@ -26,6 +26,16 @@ public class SecurityConfig {
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(firebaseTokenFilter, UsernamePasswordAuthenticationFilter.class);
+//
+//        http
+//                .csrf(AbstractHttpConfigurer::disable)  // Deaktiviert CSRF-Schutz global)  // Deaktiviert CSRF für die H2-Konsole
+//                .authorizeHttpRequests(auth -> auth
+//                        .requestMatchers("/account/**").permitAll()  // Erlaubt den Zugriff auf die H2-Konsole
+//                        .requestMatchers("/h2-console/**").permitAll()  // Erlaubt den Zugriff auf die H2-Konsole
+//                        .anyRequest().authenticated()  // Alle anderen Anfragen erfordern Authentifizierung
+//                )
+//                .addFilterBefore(firebaseTokenFilter, UsernamePasswordAuthenticationFilter.class)
+//                .headers((headers) -> headers.frameOptions(frameOptionsConfig -> frameOptionsConfig.disable()));
 
         return http.build();
     }
